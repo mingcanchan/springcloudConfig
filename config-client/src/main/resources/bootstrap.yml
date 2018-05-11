@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: config-client
+
+  cloud:
+    config:
+#      uri:  http://localhost:8771
+      fail-fast:  true
+      discovery:
+        enabled: true
+        service-id: config-server
+
+  profiles:
+    active: dev
+#    rabbitmq 配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+
+#  将服务注册到eureka 作为集群
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://localhost:8761/eureka/
+
+management:
+  security:
+    enabled: false
+

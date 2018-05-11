@@ -1,0 +1,38 @@
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/mingcanchan/springcloudConfig #git仓库地址
+          search-paths: respo #搜索远程仓库的文件夹地址
+          username: mingcanchan #git用户名 私人仓库需要 公开仓库可以不需要
+          password: sand543320 #密码
+        default-label: master
+
+#        native:
+#          search-locations: classpath:/shared #配置路劲
+#  profiles:
+#    active: native #配置方案
+  profiles:
+    active: dev
+  application:
+    name: config-server
+---
+spring:
+  profiles: dev
+server:
+  port: 8771
+---
+spring:
+  profiles: dev1
+server:
+  port: 8772
+---
+
+#  将服务注册到eureka 作为集群
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://localhost:8761/eureka/
+
+
