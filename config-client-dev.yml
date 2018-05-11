@@ -1,4 +1,4 @@
 server:
-  port: 8772
+  port: 8773
 
-foo: foo version1
+foo: foo version2
