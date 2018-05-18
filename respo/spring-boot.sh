@@ -17,9 +17,8 @@ fi
 
 if [ "$config" = "" ];
 then
-    echo -e "\033[0;31m 当前使用默认配置 \033[0m  \033[0;34m {dev|test|gray|pro} \033[0m"
-else
-	config="--spring.profiles.active="$3
+    echo -e "\033[0;31m 请输入默认名 \033[0m  \033[0;34m {dev|test|gray|pro} \033[0m"
+	exit 1
 fi
 
 function start()
@@ -29,7 +28,7 @@ function start()
 		echo "$SpringBoot is running..."
 	else
 		echo "Start $SpringBoot success..."
-		nohup java -jar -Xmx1g -Xms1g -XX:PermSize=128M -XX:MaxPermSize=256M $SpringBoot $config > start.log 2>&1 &
+		nohup java -jar -Xmx1g -Xms1g -XX:PermSize=128M -XX:MaxPermSize=256M $SpringBoot --spring.profiles.active=$config > start.log 2>&1 &
 	fi
 }
 
