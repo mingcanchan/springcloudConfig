@@ -17,8 +17,9 @@ fi
 
 if [ "$config" = "" ];
 then
-    echo -e "\033[0;31m 请输入配置文件名 \033[0m  \033[0;34m {dev|test|gray|pro} \033[0m"
-    exit 1
+    echo -e "\033[0;31m 当前使用默认配置 \033[0m  \033[0;34m {dev|test|gray|pro} \033[0m"
+else
+	config="--spring.profiles.active="$3
 fi
 
 function start()
@@ -28,7 +29,7 @@ function start()
 		echo "$SpringBoot is running..."
 	else
 		echo "Start $SpringBoot success..."
-		nohup java -jar -Xmx1g -Xms1g -XX:PermSize=128M -XX:MaxPermSize=256M $SpringBoot --spring.profiles.active=$config > start.log 2>&1 &
+		nohup java -jar -Xmx1g -Xms1g -XX:PermSize=128M -XX:MaxPermSize=256M $SpringBoot $config > start.log 2>&1 &
 	fi
 }
 
@@ -75,7 +76,7 @@ case $1 in
 	status;;
 	*)
 
-	echo -e "\033[0;31m Usage: \033[0m  \033[0;34m sh  $0  {start|stop|restart|status}  {SpringBootJarName} \033[0m
+	echo -e "\033[0;31m Usage: \033[0m  \033[0;34m sh  $0  {start|stop|restart|status}  {SpringBootJarName} [{dev|test|gray|pro}]\033[0m
 \033[0;31m Example: \033[0m
-	  \033[0;33m sh  $0  start esmart-test.jar \033[0m"
+	  \033[0;33m sh  $0  start esmart-test.jar [{dev|test|gray|pro}]\033[0m"
 esac
