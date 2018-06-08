@@ -17,7 +17,7 @@ fi
 
 if [ "$config" = "" ];
 then
-    echo -e "\033[0;31m 请输入默认名 \033[0m  \033[0;34m {dev|test|gray|pro} \033[0m"
+    echo -e "\033[0;31m 请输入默认名 \033[0m  \033[0;34m {dev|test|gray|prod} \033[0m"
 	exit 1
 fi
 
